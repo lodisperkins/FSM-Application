@@ -30,23 +30,21 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.addStateButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.conditions = new System.Windows.Forms.GroupBox();
+            this.removeStateButton = new System.Windows.Forms.Button();
+            this.conditionsBox = new System.Windows.Forms.GroupBox();
             this.transitionBox = new System.Windows.Forms.GroupBox();
             this.currentStateBox = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.exitButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.currentStateBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panel1.Controls.Add(this.addStateButton);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.conditions);
+            this.panel1.Controls.Add(this.removeStateButton);
+            this.panel1.Controls.Add(this.conditionsBox);
             this.panel1.Controls.Add(this.transitionBox);
             this.panel1.Controls.Add(this.currentStateBox);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -62,26 +60,28 @@
             this.addStateButton.TabIndex = 4;
             this.addStateButton.Text = "Add State";
             this.addStateButton.UseVisualStyleBackColor = true;
+            this.addStateButton.Click += new System.EventHandler(this.addStateButton_Click);
             // 
-            // button3
+            // removeStateButton
             // 
-            this.button3.Location = new System.Drawing.Point(68, 226);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 25);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Remove State";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.removeStateButton.Location = new System.Drawing.Point(68, 226);
+            this.removeStateButton.Name = "removeStateButton";
+            this.removeStateButton.Size = new System.Drawing.Size(107, 25);
+            this.removeStateButton.TabIndex = 3;
+            this.removeStateButton.Text = "Remove State";
+            this.removeStateButton.UseVisualStyleBackColor = true;
+            this.removeStateButton.Click += new System.EventHandler(this.button3_Click);
             // 
-            // conditions
+            // conditionsBox
             // 
-            this.conditions.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.conditions.Location = new System.Drawing.Point(374, 3);
-            this.conditions.Name = "conditions";
-            this.conditions.Size = new System.Drawing.Size(166, 217);
-            this.conditions.TabIndex = 2;
-            this.conditions.TabStop = false;
-            this.conditions.Text = "Condition";
+            this.conditionsBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.conditionsBox.Location = new System.Drawing.Point(374, 3);
+            this.conditionsBox.Name = "conditionsBox";
+            this.conditionsBox.Size = new System.Drawing.Size(166, 217);
+            this.conditionsBox.TabIndex = 2;
+            this.conditionsBox.TabStop = false;
+            this.conditionsBox.Text = "Condition";
+            this.conditionsBox.Enter += new System.EventHandler(this.conditions_Enter);
             // 
             // transitionBox
             // 
@@ -96,7 +96,6 @@
             // currentStateBox
             // 
             this.currentStateBox.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.currentStateBox.Controls.Add(this.comboBox1);
             this.currentStateBox.Location = new System.Drawing.Point(48, 3);
             this.currentStateBox.Name = "currentStateBox";
             this.currentStateBox.Size = new System.Drawing.Size(164, 217);
@@ -104,14 +103,6 @@
             this.currentStateBox.TabStop = false;
             this.currentStateBox.Text = "Current State";
             this.currentStateBox.Enter += new System.EventHandler(this.currentStateBox_Enter);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(20, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
             // 
             // exitButton
             // 
@@ -143,7 +134,6 @@
             this.Text = "FSM Application";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
-            this.currentStateBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -151,14 +141,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox conditions;
+        private System.Windows.Forms.GroupBox conditionsBox;
         private System.Windows.Forms.GroupBox transitionBox;
         private System.Windows.Forms.GroupBox currentStateBox;
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button removeStateButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button addStateButton;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
