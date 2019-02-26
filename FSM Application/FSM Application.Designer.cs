@@ -34,9 +34,9 @@
             this.conditions = new System.Windows.Forms.GroupBox();
             this.transitionBox = new System.Windows.Forms.GroupBox();
             this.currentStateBox = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.exitButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.currentStateBox.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,15 @@
             this.currentStateBox.TabIndex = 0;
             this.currentStateBox.TabStop = false;
             this.currentStateBox.Text = "Current State";
+            this.currentStateBox.Enter += new System.EventHandler(this.currentStateBox_Enter);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(20, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
             // 
             // exitButton
             // 
@@ -121,14 +130,6 @@
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(20, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
             // 
             // Form1
             // 
