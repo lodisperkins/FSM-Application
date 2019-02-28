@@ -10,13 +10,8 @@ namespace FSM_Application
     {
         private string name;
         public string Name { get; set; }
-        private string transition_state;
-        public string transition_State { get; set; }
-        public State(string newName)
-        {
-            name = newName;
-        }
+        public string destinationState;
         public State() { }
-        
+        public bool condition;
     }
 }
