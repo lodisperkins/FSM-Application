@@ -12,6 +12,9 @@ namespace FSM_Application
 {
     public partial class Form1 : Form
     {
+        
+        
+
         List<ComboBox> boxes;
         List<State> states;
         
@@ -90,11 +93,11 @@ namespace FSM_Application
                 current_Drop = new ComboBox();
                 transition_Drop = new ComboBox();
                 condition_Drop = new ComboBox();
- 
+               
                 boxes.Add(current_Drop);
                 boxes.Add(transition_Drop);
                 boxes.Add(condition_Drop);
-
+                
                 current_Drop.Location = new Point(x, y);
                 transition_Drop.Location = new Point(x, y);
                 condition_Drop.Location = new Point(x, y);
@@ -102,7 +105,7 @@ namespace FSM_Application
                 current_Drop.Text = state_Text;
                 transition_Drop.Text = state_Text;
                 condition_Drop.Text = cond_Text;
-                current_Drop.TextChanged += createState;
+                
                 currentStateBox.Controls.Add(boxes[boxes.Count-3]);
                 transitionBox.Controls.Add(boxes[boxes.Count-2]);
                 conditionsBox.Controls.Add(boxes[boxes.Count -1]);
