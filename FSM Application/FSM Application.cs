@@ -119,9 +119,6 @@ namespace FSM_Application
             
         }
 
-        private void currentStateBox_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
