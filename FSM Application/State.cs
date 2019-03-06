@@ -8,10 +8,15 @@ namespace FSM_Application
 {
     class State
     {
-        public State()
-        {
-
+        private string name;
+        public string Name
+        { get
+            { return name; }
+          set
+            { name = value; }
         }
-        public string Name;
+        public string destinationState;
+        public State() { }
+        public bool condition;
     }
 }
