@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSM_Application
 {
-    class Test: ICondition
+    public class Test: ICondition
     {
         public int state = 1;
         bool ICondition.Evaluate()

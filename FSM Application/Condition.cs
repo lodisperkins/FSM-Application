@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSM_Application
 {
-    interface ICondition
+    public interface ICondition
     {
         bool Evaluate();
     }

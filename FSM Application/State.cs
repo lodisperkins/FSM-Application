@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSM_Application
 {
-    class State
+    public class State
     {
         private string name;
         public string Name
@@ -15,8 +15,14 @@ namespace FSM_Application
           set
             { name = value; }
         }
-        public string destinationState;
+        public string destinationName;
         public State() { }
+        public State(string stateName, string destination)
+        {
+            name = stateName;
+            this.destinationName = destination;
+        }
         public bool condition;
+        public State destinationState;
     }
 }
