@@ -40,11 +40,12 @@ namespace FSM_Application
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<ComboBox>();
             InitializeComponent();
+                       
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -151,6 +152,8 @@ namespace FSM_Application
         //creates and adds states to the FSM and then saves it to an xml file
         private void saveButton_Click(object sender, EventArgs e)
         {
+            Form2 test = new Form2();
+            test.Show();
             for (int i = 0; i < currentStateBox.Controls.Count-1; i ++)
             {
                 State state = new State(currentStateBox.Controls[i].Text, transitionBox.Controls[i].Text);
