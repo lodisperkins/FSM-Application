@@ -10,22 +10,21 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
-
+using Newtonsoft.Json;
 namespace FSM_Application
 {
+    
     public partial class Form1 : Form
     {
-        
-      
         List<ComboBox> current_Boxes;
         List<ComboBox> transition_Boxes;
-
+        
         public Fsm fsm = new Fsm();
          
         public ComboBox current_Drop = new ComboBox();
         public ComboBox transition_Drop = new ComboBox();
         public ComboBox condition_Drop = new ComboBox();
-
+        
         public Point Point = new Point();
 
         public int x = 10;
@@ -35,6 +34,7 @@ namespace FSM_Application
         public string cond_Text = "Enter Condition...";
         public string cond_True = "True";
         public string cond_False = "False";
+        public string file_Name;
         public Form1()
         {
             transition_Boxes = new List<ComboBox>();
@@ -153,7 +153,9 @@ namespace FSM_Application
         private void saveButton_Click(object sender, EventArgs e)
         {
             Form2 test = new Form2();
+            
             test.Show();
+            test.saveName(ref file_Name);
             for (int i = 0; i < currentStateBox.Controls.Count-1; i ++)
             {
                 State state = new State(currentStateBox.Controls[i].Text, transitionBox.Controls[i].Text);
@@ -167,8 +169,10 @@ namespace FSM_Application
                 }
                 fsm.Add(state);
             }
-            XmlSerializer serializer = new XmlSerializer(typeof(Fsm));
-            TextWriter writer = new StreamWriter("FSM.xml");
+
+            JsonSerializer serializer = new JsonSerializer();
+            //XmlSerializer serializer = new XmlSerializer(typeof(Fsm));
+            TextWriter writer = new StreamWriter("FSM.json");
             serializer.Serialize(writer, fsm);
             writer.Close();
         }

@@ -23,7 +23,11 @@ namespace FSM_Application
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-
+            Close();
+        }
+        public void saveName(ref string name)
+        {
+             name = textBox1.Text;
         }
     }
 }

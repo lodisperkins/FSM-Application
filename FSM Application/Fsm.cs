@@ -22,7 +22,7 @@ namespace FSM_Application
                 statesList.Add(state);
             }
         }
- 
+         
         public void Switch(ICondition condition)
         {
             Dictionary<string, State> statesDictionary = new Dictionary<string, State>();
