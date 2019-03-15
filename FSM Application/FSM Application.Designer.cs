@@ -36,6 +36,7 @@
             this.currentStateBox = new System.Windows.Forms.GroupBox();
             this.exitButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.loadbutton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,19 +116,30 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(425, 304);
+            this.saveButton.Location = new System.Drawing.Point(239, 304);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(127, 35);
             this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "Save";
+            this.saveButton.Text = "Save FSM";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // loadbutton
+            // 
+            this.loadbutton.Location = new System.Drawing.Point(405, 304);
+            this.loadbutton.Name = "loadbutton";
+            this.loadbutton.Size = new System.Drawing.Size(127, 35);
+            this.loadbutton.TabIndex = 3;
+            this.loadbutton.Text = "Load FSM";
+            this.loadbutton.UseVisualStyleBackColor = true;
+            this.loadbutton.Click += new System.EventHandler(this.loadbutton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 351);
+            this.Controls.Add(this.loadbutton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.panel1);
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Button removeStateButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button addStateButton;
+        private System.Windows.Forms.Button loadbutton;
     }
 }
 

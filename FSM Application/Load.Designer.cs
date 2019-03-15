@@ -1,6 +1,6 @@
 ﻿namespace FSM_Application
 {
-    partial class Form2
+    partial class Load
     {
         /// <summary>
         /// Required designer variable.
@@ -29,38 +29,37 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.loadbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.Location = new System.Drawing.Point(68, 60);
+            this.textBox1.Location = new System.Drawing.Point(82, 62);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 20);
+            this.textBox1.Size = new System.Drawing.Size(193, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Enter a name for the FSM";
+            this.textBox1.Text = "Enter the name of the file to load";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button1
+            // loadbutton
             // 
-            this.button1.Location = new System.Drawing.Point(117, 102);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.loadbutton.Location = new System.Drawing.Point(136, 110);
+            this.loadbutton.Name = "loadbutton";
+            this.loadbutton.Size = new System.Drawing.Size(75, 23);
+            this.loadbutton.TabIndex = 1;
+            this.loadbutton.Text = "Load";
+            this.loadbutton.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 166);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.loadbutton);
             this.Controls.Add(this.textBox1);
-            this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "Load";
+            this.Text = "Load";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loadbutton;
     }
 }

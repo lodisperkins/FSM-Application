@@ -20,7 +20,10 @@ namespace FSM_Application
         List<ComboBox> transition_Boxes;
         
         public Fsm fsm = new Fsm();
-         
+
+        Form2 save_Window = new Form2();
+        Load load_Window = new Load();
+
         public ComboBox current_Drop = new ComboBox();
         public ComboBox transition_Drop = new ComboBox();
         public ComboBox condition_Drop = new ComboBox();
@@ -34,6 +37,7 @@ namespace FSM_Application
         public string cond_Text = "Enter Condition...";
         public string cond_True = "True";
         public string cond_False = "False";
+
         public string file_Name;
         public Form1()
         {
@@ -141,7 +145,7 @@ namespace FSM_Application
         }
         private void changeFilename(object sender, EventArgs e)
         {
-           
+            file_Name = save_Window.Controls[1].Text; 
         }
 
         private void conditions_Enter(object sender, EventArgs e)
@@ -154,16 +158,12 @@ namespace FSM_Application
             
         }
         //creates and adds states to the FSM and then saves it to an xml file
-        private void saveButton_Click(object sender, EventArgs e)
+        private void save(object sender, EventArgs e)
         {
-            Form2 test = new Form2();
-            
-            test.Show();
-            
-            for (int i = 0; i < currentStateBox.Controls.Count-1; i ++)
+            for (int i = 0; i < currentStateBox.Controls.Count - 1; i++)
             {
                 State state = new State(currentStateBox.Controls[i].Text, transitionBox.Controls[i].Text);
-                if(conditionsBox.Controls[i].Text == "True")
+                if (conditionsBox.Controls[i].Text == "True")
                 {
                     state.condition = true;
                 }
@@ -173,12 +173,66 @@ namespace FSM_Application
                 }
                 fsm.Add(state);
             }
-
+   
             JsonSerializer serializer = new JsonSerializer();
-            //XmlSerializer serializer = new XmlSerializer(typeof(Fsm));
-            TextWriter writer = new StreamWriter("FSM.json");
+            TextWriter writer = new StreamWriter(file_Name+".json");
             serializer.Serialize(writer, fsm);
             writer.Close();
+        }
+        private void load(object sender,EventArgs e)
+        {
+            if(!System.IO.File.Exists(load_Window.Controls[1].Text + ".json"))
+            {
+                return;
+            }
+            else
+            {
+                y = 0;
+                fsm = JsonConvert.DeserializeObject<Fsm>(File.ReadAllText(load_Window.Controls[1].Text+".json"));
+                currentStateBox.Controls.Clear();
+                for (int i = 0; i < fsm.statesList.Count;i++)
+                {
+                    //set the new y value used in the position of the dropdown box
+                    y += x * 3;
+                    //creates new comboboxes for each column
+                    current_Drop = new ComboBox();
+                    transition_Drop = new ComboBox();
+                    condition_Drop = new ComboBox();
+                    //sets the location of each combobox
+                    current_Drop.Location = new Point(x, y);
+                    transition_Drop.Location = new Point(x, y);
+                    condition_Drop.Location = new Point(x, y);
+                    //sets default text for each combobox
+                    current_Drop.Text = fsm.statesList[i].Name;
+                    transition_Drop.Text = fsm.statesList[i].destinationName;
+                    //adds the current and transition column boxes to a list to be used in the updatetext function
+                    current_Boxes.Add(current_Drop);
+                    transition_Boxes.Add(transition_Drop);
+                    //adds the controls to the columns
+                    currentStateBox.Controls.Add(current_Drop);
+                    transitionBox.Controls.Add(transition_Drop);
+                    conditionsBox.Controls.Add(condition_Drop);
+
+                    condition_Drop.Items.Add(cond_True);
+                    condition_Drop.Items.Add(cond_False);
+                    //updates the text in the dropwdown list once the button is clicked
+                    current_Drop.DropDown += updateText;
+                    transition_Drop.DropDown += updateText;
+                }
+                load_Window.Close();
+            }
+        }
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            save_Window.Show();
+            save_Window.Controls[0].Click += save;
+            save_Window.Controls[1].Leave += changeFilename;
+        }
+
+        private void loadbutton_Click(object sender, EventArgs e)
+        {
+            load_Window.Show();
+            load_Window.Controls[0].Click += load;
         }
     }
 }

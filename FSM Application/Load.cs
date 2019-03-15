@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FSM_Application
 {
-    public partial class Form2 : Form
+    public partial class Load : Form
     {
-        public Form2()
+        public Load()
         {
             InitializeComponent();
         }
@@ -19,16 +19,6 @@ namespace FSM_Application
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }
