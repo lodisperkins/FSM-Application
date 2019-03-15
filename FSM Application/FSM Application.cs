@@ -139,6 +139,10 @@ namespace FSM_Application
                 transition_Drop.DropDown += updateText;
             }
         }
+        private void changeFilename(object sender, EventArgs e)
+        {
+           
+        }
 
         private void conditions_Enter(object sender, EventArgs e)
         {
@@ -155,7 +159,7 @@ namespace FSM_Application
             Form2 test = new Form2();
             
             test.Show();
-            test.saveName(ref file_Name);
+            
             for (int i = 0; i < currentStateBox.Controls.Count-1; i ++)
             {
                 State state = new State(currentStateBox.Controls[i].Text, transitionBox.Controls[i].Text);

@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 namespace FSM_Application
+
 {
-    public class Fsm
+    
+    public class Fsm 
     {
-      
+        
+        public delegate bool evaluate();
         public List<State> statesList = new List<State>();
         public void Add(State state)
         {
@@ -23,19 +26,17 @@ namespace FSM_Application
             }
         }
          
-        public void Switch(ICondition condition)
+        public void Switch()
         {
             Dictionary<string, State> statesDictionary = new Dictionary<string, State>();
             foreach (var state in statesList)
             {
                 statesDictionary.Add(state.Name, state);
             }
-            if(condition.Evaluate() == current.condition)
+          
+            if(!statesDictionary.TryGetValue(current.destinationName, out current))
             {
-                if(!statesDictionary.TryGetValue(current.destinationName, out current))
-                {
-                    return;
-                }
+                return;
             }
             else
             {
@@ -59,13 +60,14 @@ namespace FSM_Application
             state1.condition = false;
             state2.condition = false;
             state3.condition = true;
+        
             machine.Add(state1);
             machine.Add(state2);
             machine.Add(state3);
-            for (test.state =1; test.state<= 4; test.state++)
 
+            for (test.state =1; test.state<= 4; test.state++)
             {
-                machine.Switch(test);
+                machine.Switch();
             }
 
         }
