@@ -9,24 +9,19 @@ using System.Windows.Forms;
 
 namespace FSM_Application
 {
-    public partial class Form2 : Form
+    public partial class warning : Form
     {
-        public Form2()
+        public warning()
         {
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void exitbutton_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -14,8 +14,6 @@ namespace FSM_Application
         [STAThread]
         static void Main()
         {
-            Fsm fsm = new Fsm();
-            fsm.test();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
