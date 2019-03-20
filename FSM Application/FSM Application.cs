@@ -235,6 +235,10 @@ namespace FSM_Application
                 }
             }
         }
+        private void close(object sender,EventArgs e)
+        {
+            Close();
+        }
         //shows the save window once clicked 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -246,6 +250,7 @@ namespace FSM_Application
             if (result == DialogResult.OK)
             {
                 file_Name = save_Window.FileName;
+                has_Saved = true;
                 save();
             }
         }
@@ -259,7 +264,7 @@ namespace FSM_Application
             if (result == DialogResult.OK)
             {
                 file_Name = load_Window.FileName;
-
+                
                 load();
             }
             
@@ -270,6 +275,12 @@ namespace FSM_Application
             if (has_Saved)
             {
                 Close();
+            }
+            else
+            {
+                warning warning_Window = new warning();
+                warning_Window.Show();
+                warning_Window.Controls[1].Click += close;
             }
         }
     }
