@@ -36,14 +36,15 @@ namespace FSM_Application
         public string cond_False = "False";
         //Name of the file that will be written to
         public string file_Name = "FSM";
-
+        public Modify mod_Form = new Modify();
+        public TreeView state;
         bool has_Saved = false;
         public Form1()
         {
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<ComboBox>();
-            InitializeComponent();
-                       
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            InitializeComponent();            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace FSM_Application
             }
             else
             {
+                mod_Form.Show();
                 //set the new y value used in the position of the dropdown box
                 y += x * 3;
                 //creates new comboboxes for each column
@@ -203,6 +205,7 @@ namespace FSM_Application
                     //creates new comboboxes for each column
                     current_Drop = new ComboBox();
                     transition_Drop = new ComboBox();
+                    transition_Drop.DropDownStyle = ComboBoxStyle.DropDownList;
                     condition_Drop = new ComboBox();
                     //sets the location of each combobox
                     current_Drop.Location = new Point(x, y);

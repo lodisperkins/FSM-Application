@@ -23,6 +23,5 @@ namespace FSM_Application
             this.destinationName = destination;
         }
         public bool condition;
-        public State destinationState;
     }
 }
