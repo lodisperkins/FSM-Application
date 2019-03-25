@@ -38,13 +38,20 @@ namespace FSM_Application
         public string file_Name = "FSM";
         public Modify mod_Form = new Modify();
         bool has_Saved = false;
+         
         public Form1()
         {
+            
+            
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<TextBox>();
+            
             mod_Form.Controls[0].Click += updateTable;
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            InitializeComponent();            
+            MaximizeBox = false;
+            
+            InitializeComponent();
+            mod_Form.Owner = this;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -135,7 +142,11 @@ namespace FSM_Application
         }
         private void addStateButton_Click(object sender, EventArgs e)
         {
-            mod_Form.Show();
+            mod_Form = new Modify();
+            mod_Form.MaximizeBox = false;
+            mod_Form.Owner = this;
+            mod_Form.StartPosition = FormStartPosition.CenterParent;
+            mod_Form.ShowDialog();
         }
 
         private void conditions_Enter(object sender, EventArgs e)
@@ -174,6 +185,7 @@ namespace FSM_Application
             serializer.Serialize(writer, fsm);
             writer.Close();
         }
+        //needs to be fixed
         //Checks to see if the file exists. If so, it loads the file into the fsm app
         private void load()
         {
