@@ -17,12 +17,12 @@ namespace FSM_Application
     public partial class Form1 : Form
     {
         //The lists used for updating the first two columns drop down boxes
-        List<ComboBox> current_Boxes;
+        List<TextBox> current_Boxes;
         List<ComboBox> transition_Boxes;
         //The finite state machine that will be pop[ulated with the values entered
         public Fsm fsm = new Fsm();
         //The controls that will populate each of the columns
-        public ComboBox current_Drop = new ComboBox();
+        public TextBox current_Drop = new TextBox();
         public ComboBox transition_Drop = new ComboBox();
         public ComboBox condition_Drop = new ComboBox();
         //Used to represent location of each control
@@ -37,12 +37,12 @@ namespace FSM_Application
         //Name of the file that will be written to
         public string file_Name = "FSM";
         public Modify mod_Form = new Modify();
-        public TreeView state;
         bool has_Saved = false;
         public Form1()
         {
             transition_Boxes = new List<ComboBox>();
-            current_Boxes = new List<ComboBox>();
+            current_Boxes = new List<TextBox>();
+            mod_Form.Controls[0].Click += updateTable;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();            
         }
@@ -79,14 +79,6 @@ namespace FSM_Application
         //updates the items in the list of each combobox 
         public void updateText(object sender, EventArgs e)
         {
-            for (int i = 0; i < current_Boxes.Count; i++)
-            {
-                current_Boxes[i].Items.Clear();
-                for (int h = 0; h < currentStateBox.Controls.Count; h++)
-                {
-                    current_Boxes[i].Items.Add(currentStateBox.Controls[h].Text);
-                }
-            }
             for (int i = 0; i < transition_Boxes.Count; i++)
             {
                 transition_Boxes[i].Items.Clear();
@@ -101,47 +93,49 @@ namespace FSM_Application
         {
            
         }
-
+        private void updateTable(object sender, EventArgs e)
+        {
+            for (int i = 0; i < mod_Form.Controls[1].Controls.Count; i++)
+            {//adds a new row of boxes after checking if there's room on the table
+                if (y > 150)
+                {
+                    return;
+                }
+                else
+                {
+                    //set the new y value used in the position of the dropdown box
+                    y += x * 3;
+                    //creates new comboboxes for each column
+                    current_Drop = new TextBox();
+                    transition_Drop = new ComboBox();
+                    condition_Drop = new ComboBox();
+                    //sets the location of each combobox
+                    current_Drop.Location = new Point(x, y);
+                    transition_Drop.Location = new Point(x, y);
+                    condition_Drop.Location = new Point(x, y);
+                    //sets default text for each combobox
+                    current_Drop.Text = mod_Form.Controls[1].Controls[i].Controls[0].Text;
+                    transition_Drop.Text = state_Text;
+                    condition_Drop.Text = cond_Text;
+                    //adds default selection choices for each combobox
+                    transition_Drop.Items.Add(current_Drop.Text);
+                    condition_Drop.Items.Add(cond_True);
+                    condition_Drop.Items.Add(cond_False);
+                    //adds the current and transition column boxes to a list to be used in the updatetext function
+                    current_Boxes.Add(current_Drop);
+                    transition_Boxes.Add(transition_Drop);
+                    //adds the controls to the columns
+                    currentStateBox.Controls.Add(current_Drop);
+                    transitionBox.Controls.Add(transition_Drop);
+                    conditionsBox.Controls.Add(condition_Drop);
+                    //updates the text in the dropwdown list once the button is clicked
+                    transition_Drop.DropDown += updateText;
+                }
+            }
+        }
         private void addStateButton_Click(object sender, EventArgs e)
         {
-            //adds a new row of boxes after checking if there's room on the table
-            if (y > 150)
-            {
-                return;
-            }
-            else
-            {
-                mod_Form.Show();
-                //set the new y value used in the position of the dropdown box
-                y += x * 3;
-                //creates new comboboxes for each column
-                current_Drop = new ComboBox();
-                transition_Drop = new ComboBox();
-                condition_Drop = new ComboBox();
-                //sets the location of each combobox
-                current_Drop.Location = new Point(x, y);
-                transition_Drop.Location = new Point(x, y);
-                condition_Drop.Location = new Point(x, y);
-                //sets default text for each combobox
-                current_Drop.Text = state_Text;
-                transition_Drop.Text = state_Text;
-                condition_Drop.Text = cond_Text;
-                //adds default selection choices for each combobox
-                current_Drop.Items.Add(current_Drop.Text);
-                transition_Drop.Items.Add(current_Drop.Text);
-                condition_Drop.Items.Add(cond_True);
-                condition_Drop.Items.Add(cond_False);
-                //adds the current and transition column boxes to a list to be used in the updatetext function
-                current_Boxes.Add(current_Drop);
-                transition_Boxes.Add(transition_Drop);    
-                //adds the controls to the columns
-                currentStateBox.Controls.Add(current_Drop);
-                transitionBox.Controls.Add(transition_Drop);
-                conditionsBox.Controls.Add(condition_Drop);
-                //updates the text in the dropwdown list once the button is clicked
-                current_Drop.DropDown += updateText;
-                transition_Drop.DropDown += updateText;
-            }
+            mod_Form.Show();
         }
 
         private void conditions_Enter(object sender, EventArgs e)
@@ -203,7 +197,7 @@ namespace FSM_Application
                     //set the new y value used in the position of the dropdown box
                     y += x * 3;
                     //creates new comboboxes for each column
-                    current_Drop = new ComboBox();
+                    current_Drop = new TextBox();
                     transition_Drop = new ComboBox();
                     transition_Drop.DropDownStyle = ComboBoxStyle.DropDownList;
                     condition_Drop = new ComboBox();
@@ -233,7 +227,6 @@ namespace FSM_Application
                         condition_Drop.Text = "False";
                     }
                     //updates the text in the dropwdown list once the drop button is clicked
-                    current_Drop.DropDown += updateText;
                     transition_Drop.DropDown += updateText;
                 }
             }

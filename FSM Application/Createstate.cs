@@ -18,12 +18,12 @@ namespace FSM_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            Hide();
         }
     }
 }

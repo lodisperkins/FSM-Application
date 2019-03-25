@@ -11,14 +11,13 @@ namespace FSM_Application
 {
     public partial class Modify : Form
     {
-        public int x = 23;
-        public int y = 27;
-        Createstate createstate_Window = new Createstate();
+        public int x = 0;
+        public int y = 10;
+        public Createstate createstate_Window = new Createstate();
         
         public Modify()
         {
             InitializeComponent();
-            Controls[0].Hide();
             createstate_Window.Controls[1].Click += createButton;
         }
 
@@ -26,15 +25,25 @@ namespace FSM_Application
         {
 
         }
+    
         private void createButton (object sender, EventArgs e)
         {
-            Button state = new Button();
-            state.Size = Controls[0].Size;
+            Panel state = new Panel();
+            state.Size = new Size(234, 55);
             state.Location = new Point(x, y);
-            state.Text = createstate_Window.Controls[2].Text;
-            Controls.Add(state);
+            state.BorderStyle = BorderStyle.Fixed3D;
+            state.BackColor = Color.White;
+
+            Label stateName = new Label();
+            stateName.Text = createstate_Window.Controls[2].Text;
+            
+            stateName.Font= new Font(stateName.Font.FontFamily,18,stateName.Font.Style,stateName.Font.Unit);
+            stateName.Location = new Point(70, 10);
+            state.Controls.Add(stateName);
+            statepanel.Controls.Add(state);
+
             createstate_Window.Hide();
-            y += y;
+            y += 60;
         }
         private void Modify_Load(object sender, EventArgs e)
         {
@@ -44,6 +53,21 @@ namespace FSM_Application
         private void button2_Click(object sender, EventArgs e)
         {
             createstate_Window.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }
