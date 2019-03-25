@@ -10,8 +10,6 @@ namespace FSM_Application
     //Stores all of the states that are to be written to a file
     public class Fsm 
     {
-        
-        public delegate bool evaluate();
         public List<State> statesList = new List<State>();
         public void Add(State state)
         {

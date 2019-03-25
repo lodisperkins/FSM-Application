@@ -36,14 +36,15 @@ namespace FSM_Application
         public string cond_False = "False";
         //Name of the file that will be written to
         public string file_Name = "FSM";
-
+        public Modify mod_Form = new Modify();
+        public TreeView state;
         bool has_Saved = false;
         public Form1()
         {
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<ComboBox>();
-            InitializeComponent();
-                       
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            InitializeComponent();            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace FSM_Application
             }
             else
             {
+                mod_Form.Show();
                 //set the new y value used in the position of the dropdown box
                 y += x * 3;
                 //creates new comboboxes for each column
@@ -203,6 +205,7 @@ namespace FSM_Application
                     //creates new comboboxes for each column
                     current_Drop = new ComboBox();
                     transition_Drop = new ComboBox();
+                    transition_Drop.DropDownStyle = ComboBoxStyle.DropDownList;
                     condition_Drop = new ComboBox();
                     //sets the location of each combobox
                     current_Drop.Location = new Point(x, y);
@@ -235,6 +238,10 @@ namespace FSM_Application
                 }
             }
         }
+        private void close(object sender,EventArgs e)
+        {
+            Close();
+        }
         //shows the save window once clicked 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -260,15 +267,10 @@ namespace FSM_Application
             if (result == DialogResult.OK)
             {
                 file_Name = load_Window.FileName;
-
+                
                 load();
             }
-          
             
-        }
-        private void exit(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -279,9 +281,9 @@ namespace FSM_Application
             }
             else
             {
-                warning warning_window = new warning();
-                warning_window.Show();
-                warning_window.Controls[1].Click += exit;
+                warning warning_Window = new warning();
+                warning_Window.Show();
+                warning_Window.Controls[1].Click += close;
             }
         }
     }
