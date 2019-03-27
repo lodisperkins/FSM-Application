@@ -28,41 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
             this.statepanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statepanel.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(185, 407);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(199, 362);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 27);
+            this.button2.Size = new System.Drawing.Size(32, 27);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Add New";
+            this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // statepanel
             // 
+            this.statepanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.statepanel.Controls.Add(this.button2);
             this.statepanel.Location = new System.Drawing.Point(34, 12);
             this.statepanel.Name = "statepanel";
-            this.statepanel.Size = new System.Drawing.Size(220, 370);
+            this.statepanel.Size = new System.Drawing.Size(231, 389);
             this.statepanel.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(2, 407);
+            this.button1.Location = new System.Drawing.Point(173, 407);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 27);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Create States";
+            this.button1.Text = "Add to FSM";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Modify
             // 
@@ -72,11 +93,12 @@
             this.ClientSize = new System.Drawing.Size(291, 435);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statepanel);
-            this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Modify";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Modify_Load);
+            this.statepanel.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -85,5 +107,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel statepanel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
