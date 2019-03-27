@@ -15,12 +15,12 @@ namespace FSM_Application
         public int y = 10;
         public Createstate createstate_Window = new Createstate();
         public List<State> states = new List<State>();
-        public List<Panel> statePanels = new List<Panel>();
-        Panel StateClicked;
+        public List<Statepanel> statePanels = new List<Statepanel>();
+        
+        Statepanel StateClicked;
         public Modify()
         {
             InitializeComponent();
-            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -32,7 +32,7 @@ namespace FSM_Application
             if(e.Button==MouseButtons.Right)
             {
                 contextMenuStrip1.Show(sender as Control,new Point(e.X,e.Y));
-                StateClicked = sender as Panel;
+                StateClicked = sender as Statepanel;
             }
             else
             {
@@ -48,24 +48,14 @@ namespace FSM_Application
         {
             if (y < 370)
             {
-                Panel panel = new Panel();
-                panel.Size = new Size(234, 55);
-                panel.Location = new Point(x, y);
-                panel.BorderStyle = BorderStyle.Fixed3D;
-                panel.BackColor = Color.White;
+                Statepanel panel = new Statepanel();
                 panel.MouseDown += new MouseEventHandler(panel_RightClick);
-
-                Label stateName = new Label();
-                stateName.Text = "State" + statepanel.Controls.Count;
-                stateName.Font = new Font(stateName.Font.FontFamily, 18, stateName.Font.Style, stateName.Font.Unit);
-                stateName.Location = new Point(70, 10);
-                stateName.MouseDown += new MouseEventHandler(panel_RightClick);
-
+                panel.Location = new Point(x, y);
+                panel.name = "New State";
                 State state = new State();
-                state.Name = stateName.Text;
+                state.Name = panel.name;
 
                 states.Add(state);
-                panel.Controls.Add(stateName);
                 statepanel.Controls.Add(panel);
                 statePanels.Add(panel);
 
@@ -89,6 +79,10 @@ namespace FSM_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < statePanels.Count;i ++)
+            {
+                states[i].Name = statePanels[i].name;
+            }
             Hide();
         }
         private void removeState(int index)
@@ -111,14 +105,15 @@ namespace FSM_Application
             {
                 for (int i = index; i < statePanels.Count-1; i++)
                 {
-                    statePanels[i].Controls[0].Text = statePanels[i + 1].Controls[0].Text;
+                    statePanels[i].name = statePanels[i + 1].name;
                 }
                 statePanels[statePanels.Count-1].Dispose();
-                statePanels.RemoveAt(index);
+                statePanels.RemoveAt(statePanels.Count - 1);
                 states.RemoveAt(index);
                 y -= 60;
             }
         }
+
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (StateClicked == null)
@@ -131,5 +126,7 @@ namespace FSM_Application
                 removeState(index);
             }
         }
+
+        
     }
 }
