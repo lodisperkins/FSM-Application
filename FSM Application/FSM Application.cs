@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using System.Xml;
 using System.IO;
 using Newtonsoft.Json;
 namespace FSM_Application
@@ -19,6 +12,7 @@ namespace FSM_Application
         //The lists used for updating the first two columns drop down boxes
         List<Label> current_Boxes;
         List<ComboBox> transition_Boxes;
+        List<string> condition_Text;
         //The finite state machine that will be pop[ulated with the values entered
         public Fsm fsm = new Fsm();
         //The controls that will populate each of the columns
@@ -45,6 +39,7 @@ namespace FSM_Application
         {
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<Label>();
+            condition_Text = new List<string>();
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             FormClosing += warning;
@@ -111,6 +106,17 @@ namespace FSM_Application
         private void updateTable(object sender, EventArgs e)
         {
             //Clears all previous data and resets position
+            
+            if (currentStateBox.Controls.Count > 0)
+            {
+                for (int i = 0; i < transitionBox.Controls.Count&&i<mod_Form.states.Count; i++)
+                {
+
+                    mod_Form.states[i].destinationName = transitionBox.Controls[i].Text;
+                    string condition = conditionsBox.Controls[i].Text;
+                    condition_Text.Add(condition);
+                }
+            }
             currentStateBox.Controls.Clear();
             transitionBox.Controls.Clear();
             conditionsBox.Controls.Clear();
@@ -139,8 +145,15 @@ namespace FSM_Application
                     condition_Drop.Location = new Point(x, y);
                     //sets default text for each combobox
                     current_Drop.Text = mod_Form.states[i].Name;
-                    transition_Drop.Text = state_Text;
-                    condition_Drop.Text = cond_Text;
+                    transition_Drop.Text = mod_Form.states[i].destinationName;
+                    if (i > condition_Text.Count - 1)
+                    {
+                        condition_Drop.Text = cond_Text;
+                    }
+                    else
+                    {
+                        condition_Drop.Text = condition_Text[i];
+                    }
                     //adds default selection choices for each combobox
                     transition_Drop.Items.Add(current_Drop.Text);
                     condition_Drop.Items.Add(cond_True);

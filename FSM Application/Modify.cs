@@ -50,6 +50,7 @@ namespace FSM_Application
         //Loads the states from a previous session into the list of states
         public void loadStates(List<State> value)
         {
+            states.Clear();
             for  (int i = 0; i < value.Count;i++)
             {
                 //Checks the position of the last control added to see if the maximum number of controls has been reached

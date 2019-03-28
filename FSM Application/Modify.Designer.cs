@@ -50,12 +50,12 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // statepanel
+            // statePanelList
             // 
             this.statePanelList.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.statePanelList.Controls.Add(this.button2);
             this.statePanelList.Location = new System.Drawing.Point(34, 12);
-            this.statePanelList.Name = "statepanel";
+            this.statePanelList.Name = "statePanelList";
             this.statePanelList.Size = new System.Drawing.Size(231, 389);
             this.statePanelList.TabIndex = 2;
             // 
@@ -67,7 +67,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 27);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Add to FSM";
+            this.button1.Text = "Update FSM";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
