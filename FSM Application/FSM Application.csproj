@@ -50,12 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Condition.cs" />
-    <Compile Include="Createstate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Createstate.Designer.cs">
-      <DependentUpon>Createstate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,9 +78,6 @@
     <Compile Include="warning.Designer.cs">
       <DependentUpon>warning.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Createstate.resx">
-      <DependentUpon>Createstate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FSM Application.resx">
       <DependentUpon>FSM Application.cs</DependentUpon>
     </EmbeddedResource>

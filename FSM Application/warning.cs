@@ -23,9 +23,9 @@ namespace FSM_Application
 
         private void exitbutton_Click(object sender, EventArgs e)
         {
-            Close();
+            
         }
-
+        //Hides window if clicked
         private void cancelbutton_Click(object sender, EventArgs e)
         {
             Hide();

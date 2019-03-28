@@ -23,7 +23,7 @@ namespace FSM_Application
                 statesList.Add(state);
             }
         }
-         
+        //Switches the current state to another. Mainly used for testing 
         public void Switch()
         {
             Dictionary<string, State> statesDictionary = new Dictionary<string, State>();

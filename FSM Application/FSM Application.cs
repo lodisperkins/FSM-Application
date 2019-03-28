@@ -36,37 +36,49 @@ namespace FSM_Application
         public string cond_False = "False";
         //Name of the file that will be written to
         public string file_Name = "FSM";
+        //Child form used for adding states
         public Modify mod_Form = new Modify();
+ 
+        //Keeps track of whether or not the user has saved
         bool has_Saved = false;
-         
         public Form1()
         {
-            
-            
             transition_Boxes = new List<ComboBox>();
             current_Boxes = new List<Label>();
-            
-            
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             FormClosing += warning;
             InitializeComponent();
             mod_Form.Owner = this;
+            mod_Form.Controls[0].Click += updateTable;
+            mod_Form.MaximizeBox = false;
+            mod_Form.StartPosition = FormStartPosition.CenterParent;
         }
+        /// <summary>
+        /// If the user closes the program without saving, this function creates a new form warning 
+        /// them. If the user has saved, the program closes as normal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void warning(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (has_Saved)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                    warning warning_Window = new warning();
+                    warning_Window.Owner = this;
+                    warning_Window.StartPosition = FormStartPosition.CenterParent;
+                    warning_Window.Controls[1].Click += close;
+                    warning_Window.ShowDialog();
+                }
+            }
             
-            if (has_Saved)
-            {
-                Close();
-            }
-            else
-            {
-                e.Cancel = true;
-                warning warning_Window = new warning();
-                warning_Window.Show();
-                warning_Window.Controls[1].Click += close;
-            }
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -78,25 +90,6 @@ namespace FSM_Application
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //checks if there are any boxes left in the list by checking the position of the y value
-            if (y < 30)
-            {
-                y = new int();
-                return;
-            }
-            //if there are any boxes in the list it removes them
-            else
-            {
-                y -= x * 3;
-
-                currentStateBox.Controls.Remove(currentStateBox.Controls[currentStateBox.Controls.Count-1]);
-                transitionBox.Controls.Remove(transitionBox.Controls[transitionBox.Controls.Count - 1]);
-                conditionsBox.Controls.Remove(conditionsBox.Controls[conditionsBox.Controls.Count - 1]);
-            }
-
-        } 
         //updates the items in the list of each combobox 
         public void updateText(object sender, EventArgs e)
         {
@@ -114,10 +107,19 @@ namespace FSM_Application
         {
            
         }
+        //Updates the finite state machine after new states have been added in the modify FSM window
         private void updateTable(object sender, EventArgs e)
         {
+            //Clears all previous data and resets position
+            currentStateBox.Controls.Clear();
+            transitionBox.Controls.Clear();
+            conditionsBox.Controls.Clear();
+
+            y = 0;
+
             for (int i = 0; i < mod_Form.states.Count; i++)
-            {//adds a new row of boxes after checking if there's room on the table
+            {
+                //adds a new row of boxes after checking if there's room on the table
                 if (y > 150)
                 {
                     return;
@@ -132,7 +134,7 @@ namespace FSM_Application
                     transition_Drop = new ComboBox();
                     condition_Drop = new ComboBox();
                     //sets the location of each combobox
-                    current_Drop.Location = new Point(x, y);
+                    current_Drop.Location = new Point(x+30, y);
                     transition_Drop.Location = new Point(x, y);
                     condition_Drop.Location = new Point(x, y);
                     //sets default text for each combobox
@@ -155,13 +157,9 @@ namespace FSM_Application
                 }
             }
         }
+        //Opens the modify FSM window if clicked
         private void addStateButton_Click(object sender, EventArgs e)
         {
-            mod_Form = new Modify();
-            mod_Form.Controls[0].Click += updateTable;
-            mod_Form.MaximizeBox = false;
-            mod_Form.Owner = this;
-            mod_Form.StartPosition = FormStartPosition.CenterParent;
             mod_Form.ShowDialog();
         }
 
@@ -219,15 +217,16 @@ namespace FSM_Application
                 currentStateBox.Controls.Clear();
                 transitionBox.Controls.Clear();
                 conditionsBox.Controls.Clear();
+                mod_Form.loadStates(fsm.statesList);
                 //loops through each new state loaded and updates the screen 
                 for (int i = 0; i < fsm.statesList.Count;i++)
                 {
                     //set the new y value used in the position of the dropdown box
                     y += x * 3;
+                    
                     //creates new comboboxes for each column
                     current_Drop = new Label();
                     transition_Drop = new ComboBox();
-                    transition_Drop.DropDownStyle = ComboBoxStyle.DropDownList;
                     condition_Drop = new ComboBox();
                     //sets the location of each combobox
                     current_Drop.Location = new Point(x, y);
@@ -261,7 +260,7 @@ namespace FSM_Application
         }
         private void close(object sender,EventArgs e)
         {
-
+            has_Saved = true;
             Close();
         }
         //shows the save window once clicked 
@@ -280,7 +279,7 @@ namespace FSM_Application
         {
             
         }
-
+        //Allows the user to select which file path to save their FSM to
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var save_Window = new SaveFileDialog();
@@ -295,7 +294,7 @@ namespace FSM_Application
                 save();
             }
         }
-
+        //Allows the user to select which file path to load their FSM from
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var load_Window = new OpenFileDialog();
@@ -309,7 +308,7 @@ namespace FSM_Application
                 load();
             }
         }
-
+        //Checks the see if the user has saved. If so the program closes as normally. Otherwise the warning window displays.
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (has_Saved)

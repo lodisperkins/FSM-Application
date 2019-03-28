@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
-            this.statepanel = new System.Windows.Forms.Panel();
+            this.statePanelList = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statepanel.SuspendLayout();
+            this.statePanelList.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,12 +52,12 @@
             // 
             // statepanel
             // 
-            this.statepanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.statepanel.Controls.Add(this.button2);
-            this.statepanel.Location = new System.Drawing.Point(34, 12);
-            this.statepanel.Name = "statepanel";
-            this.statepanel.Size = new System.Drawing.Size(231, 389);
-            this.statepanel.TabIndex = 2;
+            this.statePanelList.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.statePanelList.Controls.Add(this.button2);
+            this.statePanelList.Location = new System.Drawing.Point(34, 12);
+            this.statePanelList.Name = "statepanel";
+            this.statePanelList.Size = new System.Drawing.Size(231, 389);
+            this.statePanelList.TabIndex = 2;
             // 
             // button1
             // 
@@ -76,12 +76,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -92,12 +92,12 @@
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(291, 435);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.statepanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Controls.Add(this.statePanelList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Modify";
-            this.Text = "Form2";
+            this.Text = "Modify FSM";
             this.Load += new System.EventHandler(this.Modify_Load);
-            this.statepanel.ResumeLayout(false);
+            this.statePanelList.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -105,7 +105,7 @@
 
         #endregion
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel statepanel;
+        private System.Windows.Forms.Panel statePanelList;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;

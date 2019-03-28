@@ -15,6 +15,12 @@ namespace FSM_Application
         {
             InitializeComponent();
         }
+        public Statepanel(string value)
+        {
+            InitializeComponent();
+            statename.Text = value;
+        }
+        
         public string name
         {
             get

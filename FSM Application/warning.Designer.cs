@@ -85,6 +85,7 @@
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "warning";
             this.Text = "warning";
             this.ResumeLayout(false);
