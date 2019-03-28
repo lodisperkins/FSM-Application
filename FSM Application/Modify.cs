@@ -92,9 +92,13 @@ namespace FSM_Application
 
             Hide();
         }
+        private bool isthere()
+        {
 
+        }
         private void setTransitionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            states.FindIndex();
             createstate_Window.Show();
         }
     }
