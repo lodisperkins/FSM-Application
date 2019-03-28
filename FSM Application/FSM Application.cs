@@ -17,12 +17,12 @@ namespace FSM_Application
     public partial class Form1 : Form
     {
         //The lists used for updating the first two columns drop down boxes
-        List<TextBox> current_Boxes;
+        List<Label> current_Boxes;
         List<ComboBox> transition_Boxes;
         //The finite state machine that will be pop[ulated with the values entered
         public Fsm fsm = new Fsm();
         //The controls that will populate each of the columns
-        public TextBox current_Drop = new TextBox();
+        public Label current_Drop = new Label();
         public ComboBox transition_Drop = new ComboBox();
         public ComboBox condition_Drop = new ComboBox();
         //Used to represent location of each control
@@ -44,16 +44,30 @@ namespace FSM_Application
             
             
             transition_Boxes = new List<ComboBox>();
-            current_Boxes = new List<TextBox>();
+            current_Boxes = new List<Label>();
             
-            mod_Form.Controls[0].Click += updateTable;
+            
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            
+            FormClosing += warning;
             InitializeComponent();
             mod_Form.Owner = this;
         }
-
+        private void warning(object sender, FormClosingEventArgs e)
+        {
+            
+            if (has_Saved)
+            {
+                Close();
+            }
+            else
+            {
+                e.Cancel = true;
+                warning warning_Window = new warning();
+                warning_Window.Show();
+                warning_Window.Controls[1].Click += close;
+            }
+        }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
             
@@ -102,7 +116,7 @@ namespace FSM_Application
         }
         private void updateTable(object sender, EventArgs e)
         {
-            for (int i = 0; i < mod_Form.Controls[1].Controls.Count; i++)
+            for (int i = 0; i < mod_Form.states.Count; i++)
             {//adds a new row of boxes after checking if there's room on the table
                 if (y > 150)
                 {
@@ -113,7 +127,8 @@ namespace FSM_Application
                     //set the new y value used in the position of the dropdown box
                     y += x * 3;
                     //creates new comboboxes for each column
-                    current_Drop = new TextBox();
+                    current_Drop = new Label();
+                    current_Drop.Font = new Font(current_Drop.Font.Name, 12f);
                     transition_Drop = new ComboBox();
                     condition_Drop = new ComboBox();
                     //sets the location of each combobox
@@ -121,7 +136,7 @@ namespace FSM_Application
                     transition_Drop.Location = new Point(x, y);
                     condition_Drop.Location = new Point(x, y);
                     //sets default text for each combobox
-                    current_Drop.Text = mod_Form.Controls[1].Controls[i].Controls[0].Text;
+                    current_Drop.Text = mod_Form.states[i].Name;
                     transition_Drop.Text = state_Text;
                     condition_Drop.Text = cond_Text;
                     //adds default selection choices for each combobox
@@ -143,6 +158,7 @@ namespace FSM_Application
         private void addStateButton_Click(object sender, EventArgs e)
         {
             mod_Form = new Modify();
+            mod_Form.Controls[0].Click += updateTable;
             mod_Form.MaximizeBox = false;
             mod_Form.Owner = this;
             mod_Form.StartPosition = FormStartPosition.CenterParent;
@@ -209,7 +225,7 @@ namespace FSM_Application
                     //set the new y value used in the position of the dropdown box
                     y += x * 3;
                     //creates new comboboxes for each column
-                    current_Drop = new TextBox();
+                    current_Drop = new Label();
                     transition_Drop = new ComboBox();
                     transition_Drop.DropDownStyle = ComboBoxStyle.DropDownList;
                     condition_Drop = new ComboBox();
@@ -245,10 +261,27 @@ namespace FSM_Application
         }
         private void close(object sender,EventArgs e)
         {
+
             Close();
         }
         //shows the save window once clicked 
         private void saveButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+        //shows the load window once clicked
+        private void loadbutton_Click(object sender, EventArgs e)
+        {
+           
+            
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var save_Window = new SaveFileDialog();
             save_Window.InitialDirectory = Environment.CurrentDirectory;
@@ -262,8 +295,8 @@ namespace FSM_Application
                 save();
             }
         }
-        //shows the load window once clicked
-        private void loadbutton_Click(object sender, EventArgs e)
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var load_Window = new OpenFileDialog();
             load_Window.InitialDirectory = Environment.CurrentDirectory;
@@ -272,13 +305,12 @@ namespace FSM_Application
             if (result == DialogResult.OK)
             {
                 file_Name = load_Window.FileName;
-                
+
                 load();
             }
-            
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (has_Saved)
             {

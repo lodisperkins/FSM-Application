@@ -11,36 +11,33 @@ namespace FSM_Application
 {
     public partial class Modify : Form
     {
-        public int x = 20;
+        public int x = 0;
         public int y = 10;
         public Createstate createstate_Window = new Createstate();
         public List<State> states = new List<State>();
-      
+        public List<Statepanel> statePanels = new List<Statepanel>();
+        
+        Statepanel StateClicked;
         public Modify()
         {
             InitializeComponent();
-            createstate_Window.Controls[1].Click += renameState;
-           
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
-        private void panel_RightClick(object sender, MouseEventArgs e)
+        private void panel_RightClick(object sender,MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if(e.Button==MouseButtons.Right)
             {
-                contextMenuStrip1.Show(this, new Point(e.X, e.Y));
+                contextMenuStrip1.Show(sender as Control,new Point(e.X,e.Y));
+                StateClicked = sender as Statepanel;
             }
             else
             {
                 return;
             }
-        }
-        private void renameState(object sender,EventArgs e)
-        {
-
         }
         private void Modify_Load(object sender, EventArgs e)
         {
@@ -51,24 +48,17 @@ namespace FSM_Application
         {
             if (y < 370)
             {
-                Panel panel = new Panel();
-                panel.Size = new Size(200, 55);
+                Statepanel panel = new Statepanel();
+                panel.MouseDown += new MouseEventHandler(panel_RightClick);
                 panel.Location = new Point(x, y);
-                panel.BorderStyle = BorderStyle.Fixed3D;
-                panel.BackColor = Color.White;
-                panel.MouseDown += panel_RightClick;
-                TextBox stateName = new TextBox();
-                stateName.Text = "State" + states.Count;
-                stateName.BorderStyle = BorderStyle.None;
-                stateName.Size = panel.Size;
-                stateName.Font = new Font(stateName.Font.FontFamily, 18, stateName.Font.Style, stateName.Font.Unit);
-                stateName.Location = new Point(50, 10);
+                panel.name = "New State";
                 State state = new State();
-                states.Add(state);
-                panel.Controls.Add(stateName);
-                statepanel.Controls.Add(panel);
+                state.Name = panel.name;
 
-                createstate_Window.Hide();
+                states.Add(state);
+                statepanel.Controls.Add(panel);
+                statePanels.Add(panel);
+
                 y += 60;
             }
             else
@@ -89,17 +79,54 @@ namespace FSM_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < statePanels.Count;i ++)
+            {
+                states[i].Name = statePanels[i].name;
+            }
             Hide();
         }
-        private bool isthere()
+        private void removeState(int index)
         {
+            if(statePanels.Count==1)
+            {
+                statePanels[index].Dispose();
+                statePanels.RemoveAt(index);
+                states.RemoveAt(index);
+                y -= 60;
+            }
+            else if (index + 1 == statePanels.Count)
+            {
+                statePanels[index].Dispose();
+                statePanels.RemoveAt(index);
+                states.RemoveAt(index);
+                y -= 60;
+            }
+            else
+            {
+                for (int i = index; i < statePanels.Count-1; i++)
+                {
+                    statePanels[i].name = statePanels[i + 1].name;
+                }
+                statePanels[statePanels.Count-1].Dispose();
+                statePanels.RemoveAt(statePanels.Count - 1);
+                states.RemoveAt(index);
+                y -= 60;
+            }
+        }
 
-        }
-        private void setTransitionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            states.FindIndex();
-            createstate_Window.Show();
+            if (StateClicked == null)
+            {
+                return;
+            }
+            else
+            {
+                int index = statePanels.IndexOf(StateClicked);
+                removeState(index);
+            }
         }
+
+        
     }
 }

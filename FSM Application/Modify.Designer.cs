@@ -33,8 +33,7 @@
             this.statepanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setTransitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statepanel.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -43,9 +42,9 @@
             // 
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(209, 362);
+            this.button2.Location = new System.Drawing.Point(199, 362);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(26, 27);
+            this.button2.Size = new System.Drawing.Size(32, 27);
             this.button2.TabIndex = 1;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
@@ -55,16 +54,16 @@
             // 
             this.statepanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.statepanel.Controls.Add(this.button2);
-            this.statepanel.Location = new System.Drawing.Point(31, 12);
+            this.statepanel.Location = new System.Drawing.Point(34, 12);
             this.statepanel.Name = "statepanel";
-            this.statepanel.Size = new System.Drawing.Size(235, 389);
+            this.statepanel.Size = new System.Drawing.Size(231, 389);
             this.statepanel.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(185, 407);
+            this.button1.Location = new System.Drawing.Point(173, 407);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 27);
             this.button1.TabIndex = 3;
@@ -75,23 +74,16 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setTransitionToolStripMenuItem,
-            this.deleteToolStripMenuItem1});
+            this.deleteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
-            // setTransitionToolStripMenuItem
+            // deleteToolStripMenuItem
             // 
-            this.setTransitionToolStripMenuItem.Name = "setTransitionToolStripMenuItem";
-            this.setTransitionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.setTransitionToolStripMenuItem.Text = "Set Transition";
-            this.setTransitionToolStripMenuItem.Click += new System.EventHandler(this.setTransitionToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(145, 22);
-            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Modify
             // 
@@ -116,7 +108,6 @@
         private System.Windows.Forms.Panel statepanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem setTransitionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
