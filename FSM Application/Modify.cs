@@ -11,39 +11,36 @@ namespace FSM_Application
 {
     public partial class Modify : Form
     {
-        public int x = 0;
+        public int x = 20;
         public int y = 10;
         public Createstate createstate_Window = new Createstate();
-        
+        public List<State> states = new List<State>();
+      
         public Modify()
         {
             InitializeComponent();
-            createstate_Window.Controls[1].Click += createButton;
+            createstate_Window.Controls[1].Click += renameState;
+           
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
-    
-        private void createButton (object sender, EventArgs e)
+        private void panel_RightClick(object sender, MouseEventArgs e)
         {
-            Panel state = new Panel();
-            state.Size = new Size(234, 55);
-            state.Location = new Point(x, y);
-            state.BorderStyle = BorderStyle.Fixed3D;
-            state.BackColor = Color.White;
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(this, new Point(e.X, e.Y));
+            }
+            else
+            {
+                return;
+            }
+        }
+        private void renameState(object sender,EventArgs e)
+        {
 
-            Label stateName = new Label();
-            stateName.Text = createstate_Window.Controls[2].Text;
-            
-            stateName.Font= new Font(stateName.Font.FontFamily,18,stateName.Font.Style,stateName.Font.Unit);
-            stateName.Location = new Point(70, 10);
-            state.Controls.Add(stateName);
-            statepanel.Controls.Add(state);
-
-            createstate_Window.Hide();
-            y += 60;
         }
         private void Modify_Load(object sender, EventArgs e)
         {
@@ -52,7 +49,32 @@ namespace FSM_Application
 
         private void button2_Click(object sender, EventArgs e)
         {
-            createstate_Window.Show();
+            if (y < 370)
+            {
+                Panel panel = new Panel();
+                panel.Size = new Size(200, 55);
+                panel.Location = new Point(x, y);
+                panel.BorderStyle = BorderStyle.Fixed3D;
+                panel.BackColor = Color.White;
+                panel.MouseDown += panel_RightClick;
+                TextBox stateName = new TextBox();
+                stateName.Text = "State" + states.Count;
+                stateName.BorderStyle = BorderStyle.None;
+                stateName.Size = panel.Size;
+                stateName.Font = new Font(stateName.Font.FontFamily, 18, stateName.Font.Style, stateName.Font.Unit);
+                stateName.Location = new Point(50, 10);
+                State state = new State();
+                states.Add(state);
+                panel.Controls.Add(stateName);
+                statepanel.Controls.Add(panel);
+
+                createstate_Window.Hide();
+                y += 60;
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -67,7 +89,13 @@ namespace FSM_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             Hide();
+        }
+
+        private void setTransitionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createstate_Window.Show();
         }
     }
 }

@@ -59,7 +59,7 @@
             this.addStateButton.Name = "addStateButton";
             this.addStateButton.Size = new System.Drawing.Size(107, 25);
             this.addStateButton.TabIndex = 4;
-            this.addStateButton.Text = "Create States";
+            this.addStateButton.Text = "Modify FSM";
             this.addStateButton.UseVisualStyleBackColor = true;
             this.addStateButton.Click += new System.EventHandler(this.addStateButton_Click);
             // 
