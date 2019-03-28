@@ -212,7 +212,7 @@ namespace FSM_Application
             serializer.Serialize(writer, fsm);
             writer.Close();
         }
-        //needs to be fixed
+
         //Checks to see if the file exists. If so, it loads the file into the fsm app
         private void load()
         {
@@ -276,22 +276,8 @@ namespace FSM_Application
             has_Saved = true;
             Close();
         }
-        //shows the save window once clicked 
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-        //shows the load window once clicked
-        private void loadbutton_Click(object sender, EventArgs e)
-        {
-           
-            
-        }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            
-        }
+
         //Allows the user to select which file path to save their FSM to
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {

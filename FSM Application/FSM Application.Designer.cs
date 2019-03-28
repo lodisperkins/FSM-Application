@@ -93,7 +93,7 @@
             this.currentStateBox.Size = new System.Drawing.Size(164, 217);
             this.currentStateBox.TabIndex = 0;
             this.currentStateBox.TabStop = false;
-            this.currentStateBox.Text = "Current State";
+            this.currentStateBox.Text = "State Name";
             this.currentStateBox.Enter += new System.EventHandler(this.currentStateBox_Enter);
             // 
             // menuStrip1
